@@ -117,6 +117,20 @@
             $("." + nextPane + "-options").show();
             $(".options").addClass("two-pane");
         });
+
+        var links = {
+            "windows": "https://livedoc.tjhsst.edu/wiki/Windows_Proxy_Documentation#Configure_Proxy"
+        };
+
+        $(".options .option a[data-link]").click(function(event) {
+            event.preventDefault();
+
+            var nextLink = $(this).attr("data-link");
+
+            if(links[nextLink]) {
+                location.href = links[nextLink];
+            }
+        })
     });
     </script>
 
@@ -195,10 +209,22 @@
 
 
             <div class="win-options">
-                <h3>Choose your web browser:</h3>
+                <h3>&nbsp;</h3>
+                <div class="option option-small">
+                    <a href="" data-link="windows">
+                        <i class="fa fa-edge"></i>
+                        <span>
+                            System-wide
+                        </span>
+                    </a>
+                </div>
+
+                <h3>&nbsp;</h3>
+
+                <h3>Or, choose your web browser:</h3>
 
                 <div class="option option-small">
-                    <a href="win-chrome.html">
+                    <a href="" data-link="chrome">
                         <i class="fa fa-chrome"></i>
                         <span>
                             Google Chrome
@@ -207,28 +233,10 @@
                 </div>
 
                 <div class="option option-small">
-                    <a href="win-firefox.html">
+                    <a href="" data-link="firefox">
                         <i class="fa fa-firefox"></i>
                         <span>
                             Mozilla Firefox
-                        </span>
-                    </a>
-                </div>
-
-                <div class="option option-small">
-                    <a href="win-edge.html">
-                        <i class="fa fa-edge"></i>
-                        <span>
-                            Microsoft Edge
-                        </span>
-                    </a>
-                </div>
-
-                <div class="option option-small">
-                    <a href="win-ie.html">
-                        <i class="fa fa-internet-explorer"></i>
-                        <span>
-                            Internet Explorer
                         </span>
                     </a>
                 </div>

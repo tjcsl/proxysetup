@@ -119,16 +119,16 @@
         });
 
         var links = {
-            "windows": "https://livedoc.tjhsst.edu/wiki/Windows_Proxy_Documentation#Configure_Proxy"
+            "windows": "https://livedoc.tjhsst.edu/wiki/Windows_Proxy_Documentation",
+            "osx": "https://livedoc.tjhsst.edu/wiki/OSX_Proxy_Documentation",
+            "firefox": "https://livedoc.tjhsst.edu/wiki/Firefox_Proxy_Documentation"
         };
 
-        $(".options .option a[data-link]").click(function(event) {
-            event.preventDefault();
-
+        $(".options .option a[data-link]").each(function(event) {
             var nextLink = $(this).attr("data-link");
 
             if(links[nextLink]) {
-                location.href = links[nextLink];
+                $(this).attr("href", links[nextLink]);
             }
         })
     });
@@ -213,6 +213,40 @@
                 <div class="option option-small">
                     <a href="" data-link="windows">
                         <i class="fa fa-edge"></i>
+                        <span>
+                            System-wide
+                        </span>
+                    </a>
+                </div>
+
+                <h3>&nbsp;</h3>
+
+                <h3>Or, choose your web browser:</h3>
+
+                <div class="option option-small">
+                    <a href="" data-link="chrome">
+                        <i class="fa fa-chrome"></i>
+                        <span>
+                            Google Chrome
+                        </span>
+                    </a>
+                </div>
+
+                <div class="option option-small">
+                    <a href="" data-link="firefox">
+                        <i class="fa fa-firefox"></i>
+                        <span>
+                            Mozilla Firefox
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="osx-options">
+                <h3>&nbsp;</h3>
+                <div class="option option-small">
+                    <a href="" data-link="osx">
+                        <i class="fa fa-safari"></i>
                         <span>
                             System-wide
                         </span>

@@ -86,27 +86,37 @@
             width: 584px;
             margin-left: -292px;
         }
+
+        @media (max-width: 600px) {
+            .options.two-pane {
+                width: 272px;
+                position: absolute;
+                left: 50%;
+                margin-left: -136px;
+                text-align: center;
+            }
+        }
     </style>
 
 
     <script type="text/javascript" src="https://ion.tjhsst.edu/static/js/vendor/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
     $(function() {
-        $(".options .option a").click(function(event) {
+        $(".options .option a[data-pane]").click(function(event) {
             event.preventDefault();
 
-            var nextPane = $(this).attr("data-next");
+            var nextPane = $(this).attr("data-pane");
 
             $(this).parent().addClass("selected");
             $(".option", $(this).parent().parent()).each(function() {
-                if($("a", $(this)).attr("data-next") != nextPane) {
+                if($("a", $(this)).attr("data-pane") != nextPane) {
                     $(this).hide();
                 }
-            })
+            });
 
             $("." + nextPane + "-options").show();
             $(".options").addClass("two-pane");
-        })
+        });
     });
     </script>
 
@@ -147,7 +157,7 @@
                 <h3>Choose your operating system:</h3>
 
                 <div class="option">
-                    <a href="" data-next="win">
+                    <a href="" data-pane="win">
                         <i class="fa fa-windows"></i>
                         <span>
                             Windows
@@ -156,7 +166,7 @@
                 </div>
 
                 <div class="option">
-                    <a href="" data-next="osx">
+                    <a href="" data-pane="osx">
                         <i class="fa fa-apple"></i>
                         <span>
                             Mac OS X
@@ -165,7 +175,7 @@
                 </div>
 
                 <div class="option">
-                    <a href="" data-next="linux">
+                    <a href="" data-pane="linux">
                         <i class="fa fa-linux"></i>
                         <span>
                             Linux
@@ -174,7 +184,7 @@
                 </div>
 
                 <div class="option">
-                    <a href="" data-next="android">
+                    <a href="" data-pane="android">
                         <i class="fa fa-android"></i>
                         <span>
                             Android
@@ -188,7 +198,7 @@
                 <h3>Choose your web browser:</h3>
 
                 <div class="option option-small">
-                    <a href="" data-next="win-chrome">
+                    <a href="win-chrome.html">
                         <i class="fa fa-chrome"></i>
                         <span>
                             Google Chrome
@@ -197,10 +207,28 @@
                 </div>
 
                 <div class="option option-small">
-                    <a href="" data-next="win-firefox">
+                    <a href="win-firefox.html">
                         <i class="fa fa-firefox"></i>
                         <span>
                             Mozilla Firefox
+                        </span>
+                    </a>
+                </div>
+
+                <div class="option option-small">
+                    <a href="win-edge.html">
+                        <i class="fa fa-edge"></i>
+                        <span>
+                            Microsoft Edge
+                        </span>
+                    </a>
+                </div>
+
+                <div class="option option-small">
+                    <a href="win-ie.html">
+                        <i class="fa fa-internet-explorer"></i>
+                        <span>
+                            Internet Explorer
                         </span>
                     </a>
                 </div>

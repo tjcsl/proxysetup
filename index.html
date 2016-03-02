@@ -82,9 +82,17 @@
             display: none;
         }
 
+        .options .back-button {
+            display: none;
+        }
+
         .options.two-pane {
             width: 584px;
             margin-left: -292px;
+        }
+
+        .options.two-pane .back-button {
+            display: block;
         }
 
         @media (max-width: 600px) {
@@ -102,6 +110,7 @@
     <script type="text/javascript" src="https://ion.tjhsst.edu/static/js/vendor/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
     $(function() {
+
         $(".options .option a[data-pane]").click(function(event) {
             event.preventDefault();
 
@@ -109,19 +118,25 @@
 
             $(this).parent().addClass("selected");
             $(".option", $(this).parent().parent()).each(function() {
-                if($("a", $(this)).attr("data-pane") != nextPane) {
+                var optPane = $("a", $(this)).attr("data-pane");
+                if(optPane != nextPane && optPane) {
                     $(this).hide();
                 }
             });
 
             $("." + nextPane + "-options").show();
+
+            location.href = "#" + nextPane;
+
             $(".options").addClass("two-pane");
         });
 
         var links = {
             "windows": "https://livedoc.tjhsst.edu/wiki/Windows_Proxy_Documentation",
             "osx": "https://livedoc.tjhsst.edu/wiki/OSX_Proxy_Documentation",
-            "firefox": "https://livedoc.tjhsst.edu/wiki/Firefox_Proxy_Documentation"
+            "firefox": "https://livedoc.tjhsst.edu/wiki/Firefox_Proxy_Documentation",
+            "chrome": "https://livedoc.tjhsst.edu/wiki/Chrome_Proxy_Documentation",
+            "firefox-android": "https://livedoc.tjhsst.edu/wiki/Firefox_for_Android_Proxy_Documentation"
         };
 
         $(".options .option a[data-link]").each(function(event) {
@@ -130,7 +145,14 @@
             if(links[nextLink]) {
                 $(this).attr("href", links[nextLink]);
             }
-        })
+        });
+
+
+        var hash = location.hash.substr(1);
+        if(hash.length > 0) {
+            var el = $("a[data-pane='" + hash + "']");
+            if(el) el.click();
+        }
     });
     </script>
 
@@ -205,6 +227,15 @@
                         </span>
                     </a>
                 </div>
+
+                <div class="option back-button">
+                    <a href="">
+                        <i class="fa fa-undo"></i>
+                        <span>
+                            Back
+                        </span>
+                    </a>
+                </div>
             </div>
 
 
@@ -271,6 +302,41 @@
                         <i class="fa fa-firefox"></i>
                         <span>
                             Mozilla Firefox
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="linux-options">
+                <h3>Choose your web browser:</h3>
+
+                <div class="option option-small">
+                    <a href="" data-link="chrome">
+                        <i class="fa fa-chrome"></i>
+                        <span>
+                            Google Chrome
+                        </span>
+                    </a>
+                </div>
+
+                <div class="option option-small">
+                    <a href="" data-link="firefox">
+                        <i class="fa fa-firefox"></i>
+                        <span>
+                            Mozilla Firefox
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="android-options">
+                <h3>Choose your web browser:</h3>
+
+                <div class="option option-small">
+                    <a href="" data-link="firefox-android">
+                        <i class="fa fa-firefox"></i>
+                        <span>
+                            Firefox for Android
                         </span>
                     </a>
                 </div>

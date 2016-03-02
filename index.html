@@ -4,7 +4,7 @@
     <title>TJHSST Proxy Setup</title>
 
 
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:100italic,400italic,700italic,100,400,700" />
 
     <link rel="stylesheet" type="text/css" href="compiled.css" />
@@ -48,6 +48,19 @@
             text-decoration: underline;
         }
 
+        .option.selected {
+            background: #A3CAFF;
+        }
+
+        .option-small {
+            height: 32px;
+        }
+
+        .option-small i.fa {
+            display: inline-block;
+            font-size: 22px;
+        }
+
         .options {
             width: 272px;
             position: absolute;
@@ -55,7 +68,48 @@
             margin-left: -136px;
             text-align: center;
         }
-</style>
+
+        .options > div {
+            width: 272px;
+            float: left;
+            padding: 0 10px;
+        }
+
+        .options > .win-options,
+        .options > .osx-options,
+        .options > .linux-options,
+        .options > .android-options {
+            display: none;
+        }
+
+        .options.two-pane {
+            width: 584px;
+            margin-left: -292px;
+        }
+    </style>
+
+
+    <script type="text/javascript" src="https://ion.tjhsst.edu/static/js/vendor/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $(".options .option a").click(function(event) {
+            event.preventDefault();
+
+            var nextPane = $(this).attr("data-next");
+
+            $(this).parent().addClass("selected");
+            $(".option", $(this).parent().parent()).each(function() {
+                if($("a", $(this)).attr("data-next") != nextPane) {
+                    $(this).hide();
+                }
+            })
+
+            $("." + nextPane + "-options").show();
+            $(".options").addClass("two-pane");
+        })
+    });
+    </script>
+
 
 </head>
 <body>
@@ -89,36 +143,69 @@
         <br />
 
         <div class="options">
-            <h3>Choose your operating system:</h3>
+            <div class="os-options">
+                <h3>Choose your operating system:</h3>
 
-            <div class="option">
-                <a href="">
-                    <i class="fa fa-windows"></i>
-                    <span>
-                        Windows
-                    </span>
-                </a>
+                <div class="option">
+                    <a href="" data-next="win">
+                        <i class="fa fa-windows"></i>
+                        <span>
+                            Windows
+                        </span>
+                    </a>
+                </div>
+
+                <div class="option">
+                    <a href="" data-next="osx">
+                        <i class="fa fa-apple"></i>
+                        <span>
+                            Mac OS X
+                        </span>
+                    </a>
+                </div>
+
+                <div class="option">
+                    <a href="" data-next="linux">
+                        <i class="fa fa-linux"></i>
+                        <span>
+                            Linux
+                        </span>
+                    </a>
+                </div>
+
+                <div class="option">
+                    <a href="" data-next="android">
+                        <i class="fa fa-android"></i>
+                        <span>
+                            Android
+                        </span>
+                    </a>
+                </div>
             </div>
 
-            <div class="option">
-                <a href="">
-                    <i class="fa fa-apple"></i>
-                    <span>
-                        Mac OS X
-                    </span>
-                </a>
-            </div>
 
-            <div class="option">
-                <a href="">
-                    <i class="fa fa-linux"></i>
-                    <span>
-                        Linux
-                    </span>
-                </a>
+            <div class="win-options">
+                <h3>Choose your web browser:</h3>
+
+                <div class="option option-small">
+                    <a href="" data-next="win-chrome">
+                        <i class="fa fa-chrome"></i>
+                        <span>
+                            Google Chrome
+                        </span>
+                    </a>
+                </div>
+
+                <div class="option option-small">
+                    <a href="" data-next="win-firefox">
+                        <i class="fa fa-firefox"></i>
+                        <span>
+                            Mozilla Firefox
+                        </span>
+                    </a>
+                </div>
             </div>
         </div>
-
 
     </div>
 
